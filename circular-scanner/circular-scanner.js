@@ -1,7 +1,7 @@
 // logic
 getUserCamera().then(seeYourFace).then(makeCircularEffectEngine);
 
-let [WIDTH, HEIGHT] = [640, 480];
+let [WIDTH, HEIGHT] = [200, 200];
 
 const getContainer = () => document.getElementById("cam");
 
@@ -35,7 +35,7 @@ async function seeYourFace(stream) {
 	}
 
 	return new Promise((res) => {
-		setTimeout(() => res(canvas, width, height), 1000);
+		setTimeout(() => res({canvas,width,height}), 1000);
 	})
 }
 
@@ -53,7 +53,7 @@ function buildMediaRecorder(canvas, onReady) {
 	return mediaRecorder;
 }
 
-function makeCircularEffectEngine(canvas, width, height) {
+function makeCircularEffectEngine({canvas, width, height}) {
 
 	return new Promise(onEndFunction => {
 		canvas.addEventListener('click', function () {
